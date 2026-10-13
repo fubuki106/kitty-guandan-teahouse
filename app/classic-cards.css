@@ -1,0 +1,20 @@
+/* One scalable face for flat hands and table plays, with a fixed poker-card ratio. */
+.playing-card>.card-face{display:none}
+.site-shell .hand-cards.clear-hand .playing-card,.site-shell .played-cards .playing-card{position:relative;display:block;padding:0;aspect-ratio:7/10;height:auto;min-height:0;max-height:none;border:1px solid #d5cdbf;border-radius:6px;background:#fffefa;box-shadow:0 2px 4px #493d2826;overflow:hidden;color:#222b2a}
+.site-shell .hand-cards.clear-hand .playing-card.red,.site-shell .played-cards .playing-card.red{color:#b94236}
+.site-shell .hand-cards.clear-hand .playing-card.wild-card,.site-shell .played-cards .playing-card.wild-card{background:#fff2c9;border:2px solid #c79b43}
+.site-shell .hand-cards.clear-hand .playing-card>*,.site-shell .played-cards .playing-card>*{display:none}
+.site-shell .hand-cards.clear-hand .playing-card>.card-face,.site-shell .played-cards .playing-card>.card-face{display:block;position:absolute;inset:0;width:100%;height:100%;margin:0;transform:none;fill:currentColor;font-family:Georgia,'Times New Roman',serif}
+.site-shell .hand-cards.clear-hand .playing-card.selected{background:#ecf3e5;border:2px solid #66844f;transform:translateY(-4px)}
+.site-shell .hand-cards.clear-hand{grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;align-items:start}
+.site-shell .hand-cards.clear-hand .playing-card{width:100%;max-width:100px;justify-self:center}
+.site-shell .played-cards{width:100%;max-width:100%;display:flex;justify-content:center;align-items:center;flex-wrap:nowrap;gap:3px;margin:0;overflow:visible}
+.site-shell .played-cards .playing-card{flex:none;margin:0;width:calc((100% - (var(--played-count) - 1)*3px)/var(--played-count));max-width:49px;pointer-events:none}
+.site-shell .played-cards .playing-card:before,.site-shell .played-cards .playing-card:after{display:none}
+.site-shell [data-card-id]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:pointer}
+.site-shell .column-card .playing-card>.card-face{display:none}
+@media(max-width:640px){.site-shell .hand-cards.clear-hand{grid-template-columns:repeat(auto-fill,minmax(51px,1fr));gap:6px}.site-shell .played-cards .playing-card{max-width:34px}}
+.site-shell.mobile-focus .hand-cards.clear-hand{grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px;padding:7px 2px;align-content:start}
+.site-shell.mobile-focus .hand-cards.clear-hand .playing-card{width:100%;max-width:50px;height:auto;min-height:0;max-height:none;aspect-ratio:7/10}
+.site-shell.mobile-focus .played-cards .playing-card{max-width:32px;height:auto;min-height:0;max-height:none;aspect-ratio:7/10}
+@container(max-height:350px){.site-shell.mobile-focus .hand-cards.clear-hand{grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:5px}.site-shell.mobile-focus .hand-cards.clear-hand .playing-card{max-width:40px}.site-shell.mobile-focus .played-cards .playing-card{max-width:26px}}

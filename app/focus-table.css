@@ -1,0 +1,61 @@
+/* Fixed lobby positions make moving to a chosen seat visible to everyone. */
+.is-lobby .seat[data-self=true] .avatar{box-shadow:0 0 0 3px #fff9e8,0 0 0 5px var(--table-accent)}
+.is-lobby .table-center{width:auto;max-width:60%}
+.is-lobby .table-center .primary{white-space:nowrap;min-height:46px;padding:12px 22px}
+.is-lobby .seat-action{min-height:32px;padding:6px 13px}
+@media(orientation:landscape) and (max-height:600px) and (min-width:640px){
+ .is-lobby:not(.mobile-focus) .table-area{grid-template-columns:1fr}
+ .is-lobby:not(.mobile-focus) .hand-zone{display:none}
+ .is-lobby:not(.mobile-focus) .seat-0{display:grid;grid-template-columns:34px auto;column-gap:5px;max-width:190px;align-items:center;text-align:left}
+ .is-lobby:not(.mobile-focus) .seat-0>.avatar{grid-row:1/4}.is-lobby:not(.mobile-focus) .seat-0>strong{max-width:130px}
+ .is-lobby:not(.mobile-focus) .seat-0>.seat-action{position:absolute;left:100%;margin-left:8px;white-space:nowrap;font-size:8px}
+ .is-lobby:not(.mobile-focus) .table-center{top:50%}
+}
+/* One landscape canvas, including a CSS fallback for in-app/iPhone browsers. */
+.site-shell.mobile-focus{--focus-width:100dvw;--focus-height:100dvh;position:fixed;inset:0;z-index:50;width:var(--focus-width);height:var(--focus-height);min-height:0;overflow:hidden;background:#f9f6ee;container-type:size}
+.site-shell.mobile-focus.rotated-focus{--focus-width:100dvh;--focus-height:100dvw;right:auto;bottom:auto;transform-origin:top left;transform:translateX(100dvw) rotate(90deg)}
+.mobile-focus .topbar,.mobile-focus>footer,.mobile-focus .game-sidebar,.mobile-focus .mobile-play-controls,.mobile-focus .theme-by{display:none}
+.mobile-focus .game-main{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:38px minmax(0,1fr);gap:4px 10px;width:100%;height:100%;max-width:none;margin:0;padding:6px max(10px,env(safe-area-inset-left)) 7px;overflow:hidden}
+.mobile-focus .room-top,.mobile-focus .table-toolbar{margin:0;min-height:0;gap:8px;align-self:center}
+.mobile-focus .room-top{justify-content:flex-start}.mobile-focus .room-top>.compact{margin-left:auto}
+.mobile-focus .room-name{font-size:10px;white-space:nowrap}.mobile-focus .room-name .pill{font-size:9px;padding:4px 7px}
+.mobile-focus .room-top>.text-button,.mobile-focus .room-top>.compact,.mobile-focus .theme-open,.mobile-focus .focus-toggle{font-size:10px;min-height:32px;padding:6px 9px;gap:4px;white-space:nowrap}
+.mobile-focus .theme-open small{display:none}.mobile-focus .room-top svg,.mobile-focus .table-toolbar svg{width:14px;height:14px}
+.mobile-focus .game-grid{grid-column:1/-1;grid-row:2;display:block;height:100%;min-height:0}
+.mobile-focus .table-area{height:100%;min-height:0;display:grid;grid-template-columns:minmax(240px,.85fr) minmax(0,1.15fr);grid-template-rows:25px minmax(0,1fr);border-radius:14px;overflow:hidden}
+.mobile-focus .table-info{grid-column:1/-1;grid-row:1;padding:4px 12px;min-height:0;font-size:9px}
+.mobile-focus .table-info .text-button{min-height:0;padding:0;font-size:9px}
+.mobile-focus .felt{grid-column:1;grid-row:2;height:auto;min-height:0;margin:0 6px 6px;border-width:4px;border-radius:28px}
+.mobile-focus .felt-stitch{inset:7px;border-radius:20px}
+.mobile-focus .seat{display:block;max-width:68px;text-align:center}
+.mobile-focus .seat strong{font-size:9px;max-width:68px}.mobile-focus .seat>span,.mobile-focus .seat small{font-size:8px;white-space:normal}
+.mobile-focus .seat .avatar{width:34px;height:34px;margin:auto auto 3px}
+.mobile-focus .seat-1{left:4px}.mobile-focus .seat-3{right:4px}.mobile-focus .seat-2{top:7px}.mobile-focus .seat-0{bottom:7px}
+.mobile-focus.is-playing .seat-0{display:none}
+.mobile-focus .table-center{top:58%;width:calc(100% - 136px);max-width:none;gap:5px}
+.mobile-focus .table-center p{font-size:9px;line-height:1.5}.mobile-focus .table-center h2{font-size:15px}.mobile-focus .table-center .center-paw{width:24px;height:24px}
+.mobile-focus .turn-badge{font-size:9px;white-space:normal}.mobile-focus .played-cards{row-gap:4px;flex-wrap:wrap;justify-content:center}
+.mobile-focus .played-cards .playing-card{width:34px;height:52px;margin-left:-18px}.mobile-focus .played-cards .corner{font-size:14px}.mobile-focus .played-cards .corner b{font-size:11px}
+.mobile-focus .hand-zone{grid-column:2;grid-row:2;padding:0 9px 4px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.mobile-focus .hand-heading{flex:none;min-height:26px;font-size:10px;margin:0;gap:4px}
+.mobile-focus .hand-heading>.text-button{min-height:26px;font-size:9px;padding:3px}.mobile-focus .hand-heading small.wild-legend{font-size:8px;padding:2px 4px;margin-left:5px}
+.mobile-focus .hand-tools{flex:none;margin:0;min-height:29px;gap:5px}.mobile-focus .hand-tools>span{font-size:8px}.mobile-focus .hand-tools button{font-size:9px;padding:4px 7px;min-height:27px}
+.mobile-focus .hand-cards.clear-hand{flex:1;min-height:0;overflow-y:auto;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));grid-auto-rows:max-content;gap:4px;padding:7px 2px 4px;align-content:start}
+.mobile-focus .hand-cards.clear-hand .playing-card{aspect-ratio:.8;max-height:70px;min-height:46px;border-radius:5px}
+.mobile-focus .hand-cards .playing-card .corner{font-size:17px}.mobile-focus .hand-cards .playing-card .corner b{font-size:12px;margin-top:0}.mobile-focus .hand-cards .playing-card .card-suit{font-size:23px}.mobile-focus .hand-cards .playing-card .bottom-corner{font-size:9px}.mobile-focus .hand-cards .playing-card .joker-label{font-size:9px}
+.mobile-focus .hand-cards .wild-badge{font-size:7px;bottom:2px}.mobile-focus .hand-cards.clear-hand .playing-card.selected:after{width:12px;height:12px;font-size:9px;top:1px;right:1px}
+.mobile-focus .hand-cards.stacked-hand{flex:1;min-height:0;padding:15px 2px 8px;align-items:center;overflow-x:auto}.mobile-focus .hand-cards.stacked-hand .playing-card{width:68px;height:98px;margin-left:-36px}.mobile-focus .hand-cards.stacked-hand .playing-card:first-child{margin-left:0}
+.mobile-focus .hand-zone>.play-actions{display:flex;position:static;flex:none;background:#fffdf8;border-top:1px solid #e9e0d1;min-height:40px;padding:4px 0 0;margin:0;gap:5px}
+.mobile-focus .play-actions .compact{font-size:10px;min-height:34px;padding:7px 13px}.mobile-focus .play-actions>.text-button{font-size:9px;min-height:34px;padding:5px}
+.mobile-focus .play-actions .selection-label{flex-basis:auto;font-size:8px;padding:0;margin-left:auto;max-width:105px}.mobile-focus .play-actions select{font-size:9px;max-width:130px;flex-basis:auto;padding:5px}
+.mobile-focus.is-lobby .table-area{grid-template-columns:1fr}.mobile-focus.is-lobby .felt{grid-column:1;margin:0 8px 8px;height:auto}.mobile-focus.is-lobby .hand-zone{display:none}
+.mobile-focus.is-lobby .seat-0,.mobile-focus.is-lobby .seat-2{display:grid;grid-template-columns:38px auto;align-items:center;column-gap:7px;max-width:210px;text-align:left}
+.mobile-focus.is-lobby .seat-0 .avatar,.mobile-focus.is-lobby .seat-2 .avatar{grid-row:1/4;margin:0}.mobile-focus.is-lobby .seat strong{max-width:130px}.mobile-focus.is-lobby .seat-0 .seat-action,.mobile-focus.is-lobby .seat-2 .seat-action{position:absolute;left:100%;margin-left:9px;white-space:nowrap}
+.mobile-focus.is-lobby .seat-1{left:24px}.mobile-focus.is-lobby .seat-3{right:24px}.mobile-focus.is-lobby .seat-0{bottom:14px}.mobile-focus.is-lobby .seat-2{top:14px}
+.mobile-focus.is-lobby .table-center{top:50%;width:auto}.mobile-focus.is-lobby .table-center .primary{font-size:12px;padding:12px 26px;min-height:44px}
+.mobile-focus .music-dock,.mobile-focus.is-playing .music-dock{left:18px;right:auto;bottom:17px;padding:4px;border-radius:50%;z-index:35}
+.mobile-focus .music-toggle{padding:0}.mobile-focus .music-toggle>span:not(.vinyl-mini),.mobile-focus .music-toggle>svg,.mobile-focus .quick-listen,.mobile-focus .quick-mute{display:none}.mobile-focus .vinyl-mini{width:28px;height:28px}
+.mobile-focus .music-panel{left:12px;right:auto;top:12px;bottom:55px;width:340px;max-width:calc(var(--focus-width) - 24px);max-height:calc(var(--focus-height) - 67px);padding:18px}
+.mobile-focus .modal-backdrop{padding:12px}.mobile-focus .modal{max-height:calc(var(--focus-height) - 24px);max-width:calc(var(--focus-width) - 24px)}
+.mobile-focus .toast,.mobile-focus .error-banner{bottom:14px;font-size:10px;padding:10px 14px;max-width:70%}
+@container (max-height:350px){.mobile-focus .game-main{grid-template-rows:32px minmax(0,1fr);padding-top:3px;gap:2px}.mobile-focus .hand-cards.clear-hand .playing-card{min-height:43px;max-height:57px}.mobile-focus .hand-heading{min-height:23px}.mobile-focus .hand-tools{min-height:25px}.mobile-focus .hand-tools button{min-height:24px;padding:3px 6px}.mobile-focus .hand-zone>.play-actions{min-height:36px}.mobile-focus .play-actions .compact{min-height:32px}}

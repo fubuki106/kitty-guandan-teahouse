@@ -1,0 +1,87 @@
+/* Each visible strip carries a complete rank + suit; columns share a baseline. */
+.grouped-hand-wrap{min-width:0;min-height:0}
+.grouped-hand{--column-step:30px;--column-height:106px;display:block;overflow:auto;padding:12px 6px 5px;min-height:150px;scrollbar-width:thin;scrollbar-color:#c7b893 #f5f0e5;overscroll-behavior:contain;touch-action:pan-x pan-y}
+.grouped-track{display:flex;align-items:flex-end;justify-content:center;gap:6px;width:max-content;min-width:100%}
+.card-column{flex:none;min-width:0;display:flex;flex-direction:column;align-items:stretch}
+.column-cards{display:flex;gap:6px;align-items:flex-end}
+.column-stack{width:var(--group-card-width);flex:none}
+.column-card{position:relative;height:var(--column-step)}.column-card:last-child{height:var(--column-height)}
+.column-card .playing-card{width:100%;height:var(--column-height);margin:0;display:block;border-radius:7px;background:#fffefb;border:1px solid #cfc5b5;box-shadow:0 2px 5px #54422b19;touch-action:manipulation;overflow:hidden}
+.column-card .playing-card .corner{top:4px;left:5px;right:3px;display:flex;align-items:center;gap:3px;line-height:1;font-size:25px;font-weight:700}
+.column-card .playing-card .corner b{font-size:21px;line-height:1;margin:0}.column-card .playing-card .corner .joker-label{font-size:14px;letter-spacing:0}
+.column-card .playing-card .card-suit{font-size:42px;top:62%}.column-card .playing-card .bottom-corner{display:none}.column-card .playing-card>svg{width:65%;height:calc(var(--column-height) - var(--column-step) - 6px);max-height:65%;position:absolute;left:18%;bottom:4px}
+.column-card .playing-card.wild-card{background:linear-gradient(135deg,#fff9e7,#f9e3a1);border-color:#c39949}.column-card .wild-badge{bottom:4px;left:4px;right:4px;font-size:9px}
+.column-card .playing-card.selected,.column-card .playing-card.selected:hover{transform:translateX(-4px);border:2px solid #507b45;background:#edf5e6;box-shadow:0 0 0 1px #719962}
+.column-card .playing-card.selected:after{content:'✓';position:absolute;right:2px;top:4px;font-size:11px;line-height:14px;width:14px;height:14px;border-radius:50%;background:#507b45;color:#fff}
+.column-card .playing-card.selected:before{display:none}.column-card .playing-card:hover:not(.selected){transform:none;box-shadow:0 0 0 1px #a0b78d}
+.column-label{display:flex;align-items:center;justify-content:center;gap:4px;min-height:28px;padding:4px 2px;font-size:10px;color:#8a765d;border:1px solid #e4d9c5;background:#f8f3e7;border-radius:0 0 6px 6px;white-space:nowrap}
+.column-label b{font-size:9px;font-weight:400;opacity:.75}.column-label[aria-pressed=true]{background:#e2ecd8;border-color:#9bb88a;color:#47623b}
+.group-bomb .column-label,.group-straightFlush .column-label,.group-jokerBomb .column-label{background:#f7e9d3;color:#aa7238}.group-straight .column-label,.group-pairs .column-label,.group-triples .column-label{background:#eaf0e0;color:#64804d}.group-wild .column-label{background:#f7e6b9;color:#9d722d}
+.hand-scroll-cue{display:block;text-align:right;color:#9a8973;font-size:10px;padding:4px 5px}.hand-empty{margin:auto;padding:30px;color:#9a8973;font-size:12px}
+.hand-tools .organize-hand{display:flex;align-items:center;gap:5px;background:#e9efdf;border:1px solid #bccbab;border-radius:8px;padding:8px 11px;font-size:12px;min-height:36px;color:#536e44;margin-left:auto;white-space:nowrap}
+.hand-tools .restore-hand{font-size:11px;color:#8a7356;text-decoration:underline;white-space:nowrap;padding:8px 3px;min-height:36px}.hand-tools .selected-count{min-width:0;white-space:nowrap}
+@media(max-width:640px){
+ .grouped-hand{--column-step:27px;--column-height:88px;min-height:130px}.column-card .playing-card .corner{font-size:22px}.column-card .playing-card .corner b{font-size:19px}.column-card .playing-card .card-suit{font-size:34px}
+ .hand-tools{flex-wrap:wrap;gap:5px}.hand-tools .organize-hand{font-size:11px;padding:6px 9px;min-height:34px}.hand-tools .restore-hand{font-size:10px;min-height:34px}.hand-scroll-cue{font-size:9px}.column-label{min-height:26px;font-size:9px}
+}
+/* The landscape play surface now spans the screen; no cramped side-by-side hand. */
+.mobile-focus.is-playing .game-main{grid-template-rows:31px minmax(0,1fr);padding:3px max(8px,env(safe-area-inset-left)) 5px;gap:2px 8px}
+.mobile-focus.is-playing .room-name{display:none}.mobile-focus.is-playing .room-top>.compact{margin-left:8px}
+.mobile-focus.is-playing .table-area{grid-template-columns:minmax(0,1fr);grid-template-rows:18px minmax(94px,1fr) auto;border-radius:12px}
+.mobile-focus.is-playing .table-info{font-size:9px;padding:2px 12px;grid-row:1}
+.mobile-focus.is-playing .felt{grid-row:2;grid-column:1;height:auto;margin:0 7px;border-radius:20px;border-width:2px;overflow:hidden}
+.mobile-focus.is-playing .felt-stitch{inset:5px;border-radius:14px}.mobile-focus.is-playing .felt-decor{opacity:.5}
+.mobile-focus.is-playing .seat-1,.mobile-focus.is-playing .seat-3{display:grid;grid-template-columns:32px auto;column-gap:6px;text-align:left;max-width:128px;top:50%;transform:translateY(-50%)}
+.mobile-focus.is-playing .seat-1{left:12px}.mobile-focus.is-playing .seat-3{right:12px}
+.mobile-focus.is-playing .seat-2{display:grid;grid-template-columns:30px auto;column-gap:6px;max-width:180px;text-align:left;top:5px}
+.mobile-focus.is-playing .seat .avatar{grid-row:1/3;width:30px;height:30px;margin:0}.mobile-focus.is-playing .seat strong{font-size:10px;max-width:85px}.mobile-focus.is-playing .seat>span{font-size:9px}.mobile-focus.is-playing .seat small{display:none}
+.mobile-focus.is-playing .table-center{top:64%;width:calc(100% - 285px);max-width:500px;gap:3px}.mobile-focus.is-playing .table-center>p{font-size:10px;margin:0;line-height:1.2}
+.mobile-focus.is-playing .played-cards .playing-card{width:32px;height:43px;margin-left:-11px;border-radius:4px}.mobile-focus.is-playing .played-cards .corner{font-size:12px}.mobile-focus.is-playing .played-cards .corner b{font-size:10px}.mobile-focus.is-playing .played-cards .card-suit{font-size:19px}
+.mobile-focus.is-playing .played-by{display:none}.mobile-focus.is-playing .turn-badge{font-size:9px;padding:3px 9px}.mobile-focus.is-playing .table-center .center-paw{display:none}
+.mobile-focus.is-playing .hand-zone{grid-column:1;grid-row:3;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:30px minmax(0,auto) 38px;padding:0 9px 3px;gap:0 8px;max-height:calc(var(--focus-height) - 151px);overflow:hidden}
+.mobile-focus.is-playing .hand-heading{grid-column:1;grid-row:1;min-height:30px;font-size:10px;gap:6px}.mobile-focus.is-playing .hand-heading>.text-button{display:flex;font-size:9px;min-height:25px;white-space:nowrap}
+.mobile-focus.is-playing .hand-tools{grid-column:2;grid-row:1;display:flex;justify-content:flex-end;flex-wrap:nowrap;gap:6px;margin:0;min-height:30px}.mobile-focus.is-playing .hand-tools>div{padding:1px;flex:none}.mobile-focus.is-playing .hand-tools button{min-height:27px;font-size:10px;padding:4px 8px}.mobile-focus.is-playing .hand-tools .organize-hand{margin-left:0}.mobile-focus.is-playing .hand-tools .selected-count{display:none}
+.mobile-focus.is-playing .grouped-hand-wrap{grid-column:1/-1;grid-row:2;overflow:hidden;min-height:0}.mobile-focus.is-playing .grouped-hand{--column-step:20px;--column-height:58px;min-height:0;max-height:100%;padding:6px 5px 2px;align-items:flex-end}
+.mobile-focus.is-playing .column-card .playing-card{height:var(--column-height);min-height:0;max-height:none;aspect-ratio:auto;border-radius:5px}
+.mobile-focus.is-playing .column-card .playing-card .corner{font-size:18px;top:2px;left:4px;gap:2px}.mobile-focus.is-playing .column-card .playing-card .corner b{font-size:16px}.mobile-focus.is-playing .column-card .playing-card .card-suit{font-size:28px;top:65%}.mobile-focus.is-playing .column-card .playing-card .joker-label{font-size:11px}.mobile-focus.is-playing .column-card .wild-badge{font-size:7px;line-height:1.4;bottom:3px}
+.mobile-focus.is-playing .column-card .playing-card.selected:after{font-size:9px;width:11px;height:11px;line-height:11px;top:3px;right:1px}.mobile-focus.is-playing .column-label{font-size:9px;min-height:21px;padding:2px;gap:3px}.mobile-focus.is-playing .column-label b{font-size:8px}
+.mobile-focus.is-playing .hand-scroll-cue{display:none}.mobile-focus.is-playing .hand-cards.clear-hand{grid-column:1/-1;grid-row:2;overflow:auto;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));padding:6px 2px}
+.mobile-focus.is-playing .hand-zone>.play-actions{grid-column:1/-1;grid-row:3;min-height:38px;justify-content:center;gap:8px;margin:0;padding:3px 42px;flex-wrap:nowrap;background:#fffdf8}
+.mobile-focus.is-playing .play-actions .compact{min-height:32px;font-size:11px;padding:6px 18px}.mobile-focus.is-playing .play-actions>.text-button{min-height:32px;font-size:10px}.mobile-focus.is-playing .play-actions .selection-label{position:static;max-width:120px;font-size:9px}.mobile-focus.is-playing .play-actions select{max-width:155px;font-size:9px}
+.mobile-focus.is-playing .music-dock{bottom:10px;left:13px}.mobile-focus.is-playing .music-panel{bottom:51px;max-height:calc(var(--focus-height) - 63px)}
+@container (max-height:350px){
+ .mobile-focus.is-playing .game-main{grid-template-rows:28px minmax(0,1fr);padding-top:2px}
+ .mobile-focus.is-playing .table-area{grid-template-rows:16px minmax(79px,1fr) auto}
+ .mobile-focus.is-playing .hand-zone{grid-template-rows:27px minmax(0,auto) 34px;max-height:calc(var(--focus-height) - 131px)}
+ .mobile-focus.is-playing .grouped-hand{--column-step:19px;--column-height:48px;padding-top:5px}.mobile-focus.is-playing .column-card .playing-card .corner{font-size:17px;top:2px}.mobile-focus.is-playing .column-card .playing-card .corner b{font-size:15px}.mobile-focus.is-playing .column-card .playing-card .card-suit{font-size:24px}
+ .mobile-focus.is-playing .column-label{min-height:18px;font-size:8px}.mobile-focus.is-playing .hand-heading,.mobile-focus.is-playing .hand-tools{min-height:27px}.mobile-focus.is-playing .hand-zone>.play-actions{min-height:34px;padding-top:1px}.mobile-focus.is-playing .play-actions .compact{min-height:30px}
+ .mobile-focus.is-playing .play-actions .selection-label{display:none}.mobile-focus.is-playing .table-center{top:64%}.mobile-focus.is-playing .played-cards .playing-card{height:34px;width:28px}.mobile-focus.is-playing .turn-badge{padding:2px 7px}
+}
+@media(orientation:landscape) and (max-height:600px) and (min-width:640px){
+ .is-playing:not(.mobile-focus) .table-area{display:block}
+ .is-playing:not(.mobile-focus) .felt{height:160px}
+ .is-playing:not(.mobile-focus) .hand-zone{display:block;padding:6px 12px}
+ .is-playing:not(.mobile-focus) .grouped-hand{--column-step:24px;--column-height:78px;min-height:0}
+ .is-playing:not(.mobile-focus) .column-card .playing-card .corner{font-size:20px}.is-playing:not(.mobile-focus) .column-card .playing-card .corner b{font-size:17px}
+ .is-playing:not(.mobile-focus) .seat-2{display:grid;grid-template-columns:32px auto;max-width:180px;text-align:left;column-gap:6px}.is-playing:not(.mobile-focus) .seat-2 .avatar{grid-row:1/4}
+ .is-playing:not(.mobile-focus) .table-center{top:66%;width:60%}
+}
+.column-card .playing-card .card-suit{line-height:1;transform:translateY(-50%);bottom:auto}.mobile-focus.is-playing .grouped-hand{padding-bottom:0}
+.mobile-focus.is-playing .seat-2{display:flex;align-items:center;gap:5px;max-width:250px;white-space:nowrap}.mobile-focus.is-playing .seat-2 .avatar{width:18px;height:18px;flex:none}.mobile-focus.is-playing .seat-2 .avatar>svg:last-child{width:9px;height:9px}.mobile-focus.is-playing .seat-2>span{margin:0}
+.mobile-focus.is-playing .seat-2{flex-direction:row}.mobile-focus.is-playing .seat-2 strong,.mobile-focus.is-playing .seat-2>span{margin:0;line-height:18px}
+/* Both six-card combinations stay intact, including narrow landscape screens. */
+.mobile-focus.is-playing :is(.group-triples,.group-pairs){--column-step:16px;--column-height:58px}
+.mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card .corner{font-size:15px;top:1px}
+.mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card .corner b{font-size:14px}
+.hand-tools .organize-hand[aria-pressed=true],.hint-toggle[aria-pressed=true]{background:#e3edd8;color:#49643a;border-color:#91aa7c;box-shadow:inset 0 0 0 1px #91aa7c}
+@container(max-height:350px){
+ .mobile-focus.is-playing .bomb-family{--column-step:16px;--column-height:38px}
+ .mobile-focus.is-playing .bomb-family .playing-card .corner{font-size:15px;top:0;line-height:16px}
+ .mobile-focus.is-playing .bomb-family .playing-card .corner b{font-size:14px}
+ .mobile-focus.is-playing .bomb-family .playing-card .card-suit{font-size:20px}
+ .mobile-focus.is-playing :is(.group-triples,.group-pairs){--column-step:12px;--column-height:26px}
+ .mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card .corner{font-size:12px;top:0;line-height:12px}
+ .mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card .corner b{font-size:11px}
+ .mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card .card-suit{display:none}
+ .mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card.selected:after{top:0;width:10px;height:10px;font-size:8px;line-height:10px}
+}
