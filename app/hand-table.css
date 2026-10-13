@@ -85,3 +85,10 @@
  .mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card .card-suit{display:none}
  .mobile-focus.is-playing :is(.group-triples,.group-pairs) .playing-card.selected:after{top:0;width:10px;height:10px;font-size:8px;line-height:10px}
 }
+/* Landscape phones outside focus mode: seat markers already name who played, so the short felt keeps only cards and the turn badge. */
+@media(orientation:landscape) and (max-height:600px) and (min-width:640px){
+ .is-playing:not(.mobile-focus) .felt{height:190px}
+ .is-playing:not(.mobile-focus) .played-by{display:none}
+ .is-playing:not(.mobile-focus) .seat-2 .seat-move{display:inline-block;margin:0 0 0 4px}
+ .site-shell.is-playing:not(.mobile-focus) .played-cards .playing-card{max-width:36px}
+}

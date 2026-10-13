@@ -4,7 +4,7 @@
 .wild-badge{position:absolute;bottom:4px;left:3px;right:3px;border-radius:3px;background:#9e702b;color:#fff9e8;font-size:clamp(7px,.65vw,10px);font-weight:700;line-height:1.6;letter-spacing:.05em;text-align:center;white-space:nowrap}
 .playing-card.small .wild-badge{font-size:7px;bottom:3px;left:2px;right:2px}
 .hand-heading small.wild-legend{display:inline-flex;align-items:center;gap:3px;padding:3px 6px;border:1px solid #e8d2a1;border-radius:6px;background:#fff4d8;color:#8c652f;font-size:10px;margin-left:8px}
-.wild-legend>span{color:#ba644c;font-weight:700}.wild-legend em{font-style:normal;font-weight:700}
+.wild-legend>span{color:#ba644c;font-weight:700}.wild-legend em{font-style:normal;font-weight:700;margin-left:2px}
 .voice-local-note{font-size:9px;color:#a19380;max-width:105px;line-height:1.7}
 .voice-picker{border:0;padding:17px 0 15px;margin:0;border-bottom:1px solid #ece4d6;min-width:0}
 .voice-picker legend{float:left;width:100%;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;color:#75624d;margin-bottom:12px}
@@ -49,6 +49,9 @@
 .seat{max-width:150px;font-size:13px}.seat strong{font-size:clamp(11px,.85vw,15px);max-width:145px}.seat>span{font-size:11px}.seat small{font-size:10px}
 .avatar{width:clamp(44px,4vw,68px);height:clamp(44px,4vw,68px);padding:0}
 .seat-0{bottom:10px}.seat-2{top:10px}.seat-1{left:18px}.seat-3{right:18px}
+/* Each seat's move in the current trick, so passes and bombs stay readable after the center updates. */
+.seat-move{display:block;width:max-content;max-width:100%;margin:4px auto 0;padding:1px 8px;border:1px solid var(--felt-stitch);border-radius:999px;background:var(--felt-edge);color:var(--felt-ink);font-size:10px;font-style:normal;font-weight:600;line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat-move.passed{background:transparent;border-style:dashed;color:var(--felt-muted);font-weight:400}
 .table-center{max-width:65%;width:60%}.table-center h2{font-size:clamp(17px,1.4vw,26px)}.table-center p{font-size:clamp(11px,.85vw,15px)}
 .hand-zone{padding:18px 22px 20px;container-type:inline-size}
 .hand-heading{font-size:13px;gap:8px}.hand-heading small{font-size:11px}.hand-heading>.text-button{min-height:36px}
@@ -114,7 +117,21 @@
  .felt{height:clamp(280px,31dvh,470px)}
  .seat-0,.seat-2{display:grid;grid-template-columns:58px auto;align-items:center;column-gap:9px;max-width:260px;text-align:left}
  .seat-0>.avatar,.seat-2>.avatar{grid-row:1/4;width:58px;height:58px}.seat-0>strong,.seat-2>strong{max-width:175px}.seat-0>.kick-action,.seat-2>.kick-action{grid-column:2}.seat-0 small,.seat-2 small{white-space:nowrap}
+ .seat-0 .seat-move,.seat-2 .seat-move{display:inline-block;margin:0 0 0 6px;vertical-align:1px}
 }
+/* Tablets and small laptops: side-by-side top/bottom seats leave room for the played cards in the middle. */
+@media(min-width:641px) and (max-width:1100px) and (min-height:601px){
+ .is-playing:not(.mobile-focus) .seat-0,.is-playing:not(.mobile-focus) .seat-2{display:grid;grid-template-columns:46px auto;align-items:center;column-gap:8px;max-width:260px;text-align:left}
+ .is-playing:not(.mobile-focus) .seat-0>.avatar,.is-playing:not(.mobile-focus) .seat-2>.avatar{grid-row:1/4;width:46px;height:46px}
+ .is-playing:not(.mobile-focus) .seat-0>strong,.is-playing:not(.mobile-focus) .seat-2>strong{max-width:175px}
+ .is-playing:not(.mobile-focus) .seat-0>.kick-action,.is-playing:not(.mobile-focus) .seat-2>.kick-action{grid-column:2}
+ .is-playing:not(.mobile-focus) .seat-0 small,.is-playing:not(.mobile-focus) .seat-2 small{white-space:nowrap}
+ .is-playing:not(.mobile-focus) .seat-0 .seat-move,.is-playing:not(.mobile-focus) .seat-2 .seat-move{display:inline-block;margin:0 0 0 6px;vertical-align:1px}
+}
+/* Laptop-height screens: keep enough felt for top seat + played cards + turn badge + bottom seat. */
+@media(min-width:641px) and (min-height:601px){.is-playing:not(.mobile-focus) .felt{min-height:320px}}
+@media(max-width:640px){.seat-move{font-size:8px;padding:0 5px;margin-top:2px}.is-playing .seat-2 .seat-move{margin-left:0}}
+.mobile-focus .seat-move{font-size:8px;padding:0 5px;margin-top:2px}.mobile-focus.is-playing .seat-2 .seat-move{display:inline-block;margin:0 0 0 4px}
 @media(orientation:landscape) and (max-height:600px) and (min-width:640px){
  .room-top>.compact{padding:6px 9px;font-size:10px}.room-top{min-height:30px}.room-name{font-size:11px}
  .table-info{padding:5px 12px;min-height:28px}.table-info>.text-button{min-height:18px;padding:0;font-size:10px}

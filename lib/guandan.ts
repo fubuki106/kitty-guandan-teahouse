@@ -145,3 +145,11 @@ export function suggest(hand: Card[], level: number, previous?: Play | null): Pl
   choices.sort((a, b) => score(a) - score(b));
   return choices[0] || null;
 }
+/** Bot follow-up policy: go out whenever possible, let a teammate's play stand, and keep bombs for real threats. */
+export function botPlay(hand: Card[], level: number, previous: Play | null | undefined, situation: { teammateLed: boolean; opponentLeft: number }): Play | null {
+  const play = suggest(hand, level, previous);
+  if (!play || !previous || play.size === hand.length) return play;
+  if (situation.teammateLed) return null;
+  if (!bombPower(play)) return play;
+  return situation.opponentLeft <= 8 || hand.length - play.size <= 5 ? play : null;
+}

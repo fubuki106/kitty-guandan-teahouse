@@ -9,7 +9,7 @@ export async function POST(req:Request){try{
  const raw=await req.text();if(raw.length>75000)return reply({error:'请求过大'},413);const b=JSON.parse(raw),db=env.DB!;
  if(b.action==='create'){
   const id=crypto.randomUUID().replace(/-/g,'').slice(0,8).toUpperCase(),r=createRoom(id,t,nickname(b.name));r.players[0]!.avatar=avatar(b.avatar);
-  if(b.seat!==undefined)moveSeat(r,0,seatNumber(b.seat));advanceMusic(r);
+  if(b.seat!==undefined)moveSeat(r,0,seatNumber(b.seat));if(b.practice)startRound(r);advanceMusic(r);
   await db.prepare('INSERT INTO rooms (id,state,revision,updated) VALUES (?,?,0,?)').bind(id,JSON.stringify(r),Date.now()).run();return reply(publicRoom(r,t));
  }
  const id=String(b.id||'');if(!/^[A-Z0-9]{8}$/.test(id))throw Error('房间码应为 8 位字母或数字。');

@@ -17,7 +17,7 @@
 - `public/`：卡牌、头像、语音等静态资源
 - `drizzle/`：房间与个人资料表的建表迁移
 - `deploy/`、`scripts/prepare-cloudflare.mjs`：独立 Cloudflare 部署配置
-- `tests/`：手牌排序与六张组合完整显示的回归检查
+- `tests/`：手牌排序、六张组合完整显示与机器人出牌策略（整局模拟）的回归检查
 
 ## 本地开发
 
